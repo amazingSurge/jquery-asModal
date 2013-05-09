@@ -1,11 +1,6 @@
-/*
- * jquery.modal
- * https://github.com/amazingSurge/jquery-modal
- *
- * Copyright (c) 2013 amazingSurge
- * Licensed under the MIT license.
- */
-
+/*! jQuery Modal - v0.1.0 - 2013-05-09
+* https://github.com/amazingSurge/jquery-modal
+* Copyright (c) 2013 amazingSurge; Licensed MIT */
 (function(window, document, $, undefined) {
     "use strict";
 

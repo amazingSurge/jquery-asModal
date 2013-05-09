@@ -47,12 +47,6 @@ module.exports = function(grunt) {
         },
         src: ['src/**/*.js']
       },
-      test: {
-        options: {
-          jshintrc: 'test/.jshintrc'
-        },
-        src: ['test/**/*.js']
-      },
     },
     watch: {
       gruntfile: {
@@ -61,11 +55,7 @@ module.exports = function(grunt) {
       },
       src: {
         files: '<%= jshint.src.src %>',
-        tasks: ['jshint:src', 'qunit']
-      },
-      test: {
-        files: '<%= jshint.test.src %>',
-        tasks: ['jshint:test', 'qunit']
+        tasks: ['jshint:src']
       },
     },
   });
