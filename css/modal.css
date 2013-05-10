@@ -1,6 +1,5 @@
 .modal-container {
   position: fixed;
-  top: 0;
   z-index: 10001;
   display: block;
   margin: 0 auto;

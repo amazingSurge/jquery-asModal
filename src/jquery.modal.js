@@ -9,6 +9,19 @@
 (function(window, document, $, undefined) {
     "use strict";
 
+
+    function isNumber(num) {
+      return (typeof num === 'string' || typeof num === 'number') && !isNaN(num - 0) && num !== '';
+    }
+
+    function divideByTwo(num) {
+      if (isNumber(num)) {
+        return num / 2;
+      }
+      if (typeof num === 'string' && num.charAt(num.length - 1) === '%') {
+        return num.substr(0, num.length - 1) / 2 + '%';
+      }
+    }
     // Constructor
     var Modal = $.Modal = function(element, options) {
         // Attach element to the 'this' keyword
@@ -30,7 +43,6 @@
 
         this.$element.addClass(namespace + '-container');
 
-
         var self = this;
         $.extend(self, {
             init: function() {
@@ -49,38 +61,45 @@
                 }
 
                 self.$element.show().removeClass(namespace+'-hide');
-
-
-                $(document).on('keydown.modal', function (e) {
-                  if (self.options.closeByEscape && e.keyCode === 27) {
-                    e.preventDefault();
-                    self.$element.trigger('modal:close');
-                  }
-                });
-
-                $(window).on('resize.modal orientationchange.modal', function() {
-                  self.position();
-                });
-
-                // Fire onShow event
-                if($.isFunction(self.options.onShow)){
-                  self.options.onShow.call(self);
-                }
+                self.position();
                 return false;
-              });
+              });      
 
               self.$element.on('modal:close', function(){
                 // Fire onClose event
                 if($.isFunction(self.options.onClose)){
                   self.options.onClose.call(self);
-                }    
-
-                $(document).off('.modal');
-                $(window).off('.modal');
+                }
 
                 self.$element.hide().addClass(namespace+'-hide');
                 return false;
-              });     
+              });
+
+
+              if (self.options.closeByEscape){
+                self.$element.on('modal:open', function(){
+                  $(document).on('keydown.modal', function (e) {
+                    if (e.keyCode === 27) {
+                      e.preventDefault();
+                      self.$element.trigger('modal:close');
+                    }
+                  });
+                });
+                self.$element.on('modal:close', function(){
+                  $(document).off('keydown.modal');
+                });
+              }
+              
+              if(self.options.autoPosition){
+                self.$element.on('modal:open', function(){
+                  $(window).on('resize.modal orientationchange.modal', function() {
+                    self.position();
+                  });
+                });
+                self.$element.on('modal:close', function(){
+                  $(window).off('resize.modal orientationchange.modal');
+                });
+              }
             },
             overlay: {
               setup: function(){
@@ -138,7 +157,10 @@
         focus: true,
         closeByEscape: true,
         closeByOverlayClick: true,
-        autoPosition: true,
+        autoPosition: false,
+        width: null,
+        height: null,
+        position: ['50%','50%'],
 
         // Callback API
         onOpen: null, // Callback: function() - Fires when the modal open
@@ -157,7 +179,27 @@
           this.$element.trigger('modal:close');
         },
         position: function() {
-            
+            var width, height;
+            if(this.options.width){
+              width = this.options.width;
+              this.$element.width(width);
+            }else{
+              width = this.$element.width();
+            }
+
+            if(this.options.height){
+              height = this.options.height;
+              this.$element.height(height);
+            }else{
+              height = this.$element.height();
+            }
+            this.$element.css({
+              marginLeft: divideByTwo('-'+width),
+              marginTop: divideByTwo('-'+height),
+              left: this.options.position[0],
+              top: this.options.position[1]
+            });
+            console.log('position');
         }
     };
 
