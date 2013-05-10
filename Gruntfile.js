@@ -58,6 +58,16 @@ module.exports = function(grunt) {
         tasks: ['jshint:src']
       },
     },
+    recess: {
+      dist: {
+        options: {
+            compile: true
+        },
+        files: {
+            'css/modal.css': ['less/modal.less']
+        }
+      }
+    }
   });
 
   // These plugins provide necessary tasks.
@@ -66,6 +76,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-recess');
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'clean', 'concat', 'uglify']);

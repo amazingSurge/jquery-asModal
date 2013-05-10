@@ -41,7 +41,6 @@
                 this.close.setup();
               }
 
-
               // Bind logic
               self.$element.on('modal:open', function(){
                 // Fire onOpen event
@@ -49,13 +48,13 @@
                   self.options.onOpen.call(self);
                 }
 
-                self.$element.removeClass(namespace+'-hide').addClass(namespace+'-show');
+                self.$element.show().removeClass(namespace+'-hide');
 
 
                 $(document).on('keydown.modal', function (e) {
                   if (self.options.closeByEscape && e.keyCode === 27) {
                     e.preventDefault();
-                    self.close();
+                    self.$element.trigger('modal:close');
                   }
                 });
 
@@ -79,9 +78,9 @@
                 $(document).off('.modal');
                 $(window).off('.modal');
 
-                self.$element.removeClass(namespace+'-show').addClass(namespace+'-hide');
+                self.$element.hide().addClass(namespace+'-hide');
                 return false;
-              });              
+              });     
             },
             overlay: {
               setup: function(){
@@ -93,7 +92,7 @@
                   // bind the overlay click to the close function, if enabled
                   if(self.options.closeByOverlayClick){
                     self.$overlay.on('click.modal', function(){
-                      self.close();
+                      self.$element.trigger('modal:close');
                     });
                   }
                 });
@@ -107,10 +106,10 @@
                 });
               },
               show: function(){
-                self.$overlay.removeClass(namespace+'-hide').addClass(namespace+'-show');
+                self.$overlay.addClass(namespace+'-show');
               },
               hide: function(){
-                self.$overlay.removeClass(namespace+'-show').addClass(namespace+'-hide');
+                self.$overlay.removeClass(namespace+'-show');
               }
             },
             close: {
@@ -176,9 +175,12 @@
             });
         } else {
             return this.each(function() {
-                if (!$.data(this, 'modal')) {
-                    $.data(this, 'modal', new Modal(this, options));
+                var api = $.data(this, 'modal');
+                if (!api) {
+                    api = new Modal(this, options);
+                    $.data(this, 'modal', api);
                 }
+                api.open();
             });
         }
     };

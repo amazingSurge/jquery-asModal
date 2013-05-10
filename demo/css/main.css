@@ -93,8 +93,18 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-
-
+html {
+    background: #f9fdff;
+}
+.content {
+    width: 960px;
+    margin: 0 auto;
+    background: #f6f8f9;
+    padding: 10px;
+}
+#register_form {
+    display: none;
+}
 
 
 

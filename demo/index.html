@@ -12,12 +12,40 @@
 
 <link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="../css/modal.css">
 </head>
 <body>
-
-<p>jQuery Modal.</p>
-
+<div class="content">
+    <p>jQuery Modal.</p>
+    <a href="#" class="click-login">Login</a>
+    <div id="register_form">
+        <form action="#" method="post">
+            <header>Login</header>
+            <ul>
+                <li>
+                    <label for="username">Username:</label>
+                    <input id="username" type="text" name="username" />
+                </li>
+                <li>
+                    <label for="password">Password:</label>
+                    <input id="password" type="text" name="password" />
+                </li>
+            </ul>
+            <footer>
+                <button>Submit</button>
+            </footer>
+        </form>
+    </div>
+</div>
 <script src="js/jquery-1.9.1.min.js"></script>
+<script src="../src/jquery.modal.js"></script>
 <script src="js/main.js"></script>
+<script>
+jQuery(document).ready(function(){
+    $('.click-login').click(function(){
+        $('#register_form').modal();
+    });
+});
+</script>
 </body>
 </html>
