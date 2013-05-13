@@ -86,7 +86,7 @@
             self.$element.trigger('modal:afterClose');
           });
 
-          
+
           return false;
         });
 
@@ -128,7 +128,7 @@
 
           self.$element.on('modal:beforeOpen', function() {
             self.$overlay.addClass(namespace + '-show');
-            self.animate(self.$overlay, namespace + '-animate-show', self.options.duration);     
+            self.animate(self.$overlay, namespace + '-animate-show', self.options.duration);
 
             // bind the overlay click to the close function, if enabled
             if (self.options.closeByOverlayClick) {
@@ -139,10 +139,9 @@
           });
 
           self.$element.on('modal:beforeClose', function() {
-            self.animate(self.$overlay, namespace + '-animate-hide', self.options.duration, null, function(){
+            self.animate(self.$overlay, namespace + '-animate-hide', self.options.duration, null, function() {
               self.$overlay.removeClass(namespace + '-show');
             });
-            
 
             if (self.options.closeByOverlayClick) {
               self.$overlay.off('click.modal');
@@ -224,7 +223,7 @@
     beforeOpen: null, // Callback: function() - Fires before the modal open
     afterOpen: null, // Callback: function() - Fires after the modal open
     beforeClose: null, // Callback: function() - Fires before the modal close
-    afterClose: null  // Callback: function() - Fires after the modal close
+    afterClose: null // Callback: function() - Fires after the modal close
   };
 
   Modal.prototype = {
