@@ -39,6 +39,68 @@
           animation-fill-mode: both;
 }
 
+.modal-animate-show {
+  -webkit-animation-name: overlayShow;
+     -moz-animation-name: overlayShow;
+       -o-animation-name: overlayShow;
+          animation-name: overlayShow;
+}
+
+.modal-animate-hide {
+  -webkit-animation-name: overlayHide;
+     -moz-animation-name: overlayHide;
+       -o-animation-name: overlayHide;
+          animation-name: overlayHide;
+}
+
+@-webkit-keyframes overlayShow {
+  0% {
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes overlayShow {
+  0% {
+    opacity: 0;
+  }
+}
+
+@-o-keyframes overlayShow {
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes overlayShow {
+  0% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes overlayHide {
+  100% {
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes overlayHide {
+  100% {
+    opacity: 0;
+  }
+}
+
+@-o-keyframes overlayHide {
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes overlayHide {
+  100% {
+    opacity: 0;
+  }
+}
+
 /* styles */
 
 .modal-container {
