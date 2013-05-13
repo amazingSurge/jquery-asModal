@@ -67,6 +67,26 @@ module.exports = function(grunt) {
             'css/modal.css': ['less/modal.less']
         }
       }
+    },
+    jsbeautifier : {
+      files : ["src/**/*.js"],
+      options : {
+        indent_size: 2,
+        indent_char: " ",
+        indent_level: 0,
+        indent_with_tabs: false,
+        preserve_newlines: true,
+        max_preserve_newlines: 10,
+        jslint_happy: false,
+        brace_style: "collapse",
+        keep_array_indentation: false,
+        keep_function_indentation: false,
+        space_before_conditional: true,
+        eval_code: false,
+        indent_case: false,
+        wrap_line_length: 150,
+        unescape_strings: false
+      }
     }
   });
 
@@ -77,8 +97,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-recess');
+  grunt.loadNpmTasks('grunt-jsbeautifier');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'clean', 'concat', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'jsbeautifier', 'clean', 'concat', 'uglify']);
 
+  grunt.registerTask('js', ['jsbeautifier']);
 };
