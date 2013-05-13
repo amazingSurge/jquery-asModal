@@ -158,6 +158,14 @@
         }
       },
       animate: function($element, animation, duration, delay, callback) {
+        if (!(window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame ||
+          window.msRequestAnimationFrame)) {
+          if ($.isFunction(callback)) {
+            callback();
+          }
+          return;
+        }
+
         $element.one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function() {
           $element.data('animating', false);
 
