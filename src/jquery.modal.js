@@ -132,7 +132,7 @@
           this.overlay.setup();
         }
         if (self.options.close) {
-          this.close.setup();
+          this.closeButton.setup();
         }
 
         if (self.options.closeByEscape) {
@@ -190,7 +190,7 @@
           });
         }
       },
-      close: {
+      closeButton: {
         setup: function() {
           if (self.options.close === true) {
             self.options.close = namespace + '-close';
@@ -333,4 +333,23 @@
       });
     }
   };
+
+  $(document).on('click.modal', 'a[data-modal]', function(e) {
+    e.preventDefault();
+    switch ($(this).attr('data-modal')) {
+      case 'open':
+        var target = $(this).attr('href');
+        if (/^#/.test(target)) { // inline
+
+          $(target).modal($(this).data());
+
+        } else { // ajax
+
+        }
+        break;
+      case 'close':
+        $.modal.close();
+        break;
+    }
+  });
 }(window, document, jQuery));
