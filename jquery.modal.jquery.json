@@ -2,7 +2,7 @@
   "name": "jquery.modal",
   "title": "jQuery Modal",
   "description": "A lightweight jQuery plugin that help create a modal dialog.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://github.com/amazingSurge/jquery-modal",
   "author": {
     "name": "amazingSurge",
