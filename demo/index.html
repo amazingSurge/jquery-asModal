@@ -19,6 +19,7 @@
 <div class="content">
     <p>jQuery Modal.</p>
     <a href="#" class="click-login">Login</a>
+    <a href="#" class="click-fly">Open on the fly</a>
     <div id="register_form">
         <form action="#" method="post">
             <header>Login</header>
@@ -45,6 +46,9 @@
 jQuery(document).ready(function(){
     $('.click-login').click(function(){
         $('#register_form').modal();
+    });
+    $('.click-fly').click(function(){
+        $.modal('<div>hello world</div>');
     });
 });
 </script>
