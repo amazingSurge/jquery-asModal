@@ -1,17 +1,13 @@
 {
-  "name": "jquery.modal",
+  "name": "modal",
   "title": "jQuery Modal",
-  "description": "A lightweight jQuery plugin that help create a modal dialog.",
-  "version": "0.2.0",
-  "homepage": "https://github.com/amazingSurge/jquery-modal",
+  "description": "A lightweight jQuery plugin that help create a modal dialog",
+  "keywords": [],
+  "version": "0.2.1",
   "author": {
     "name": "amazingSurge",
     "email": "amazingSurge@yahoo.com",
     "url": "amazingSurge.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:amazingSurge/jquery-modal.git"
   },
   "bugs": "https://github.com/amazingSurge/jquery-modal/issues",
   "licenses": [
@@ -20,8 +16,10 @@
       "url": "https://github.com/amazingSurge/jquery-modal/blob/master/LICENSE-MIT"
     }
   ],
+  "bugs": "https://github.com/amazingSurge/jquery-modal/issues",
+  "homepage": "https://github.com/amazingSurge/jquery-modal",
+  "docs": "https://github.com/amazingSurge/jquery-modal",
   "dependencies": {
-    "jquery": "1.9.1"
-  },
-  "keywords": []
+    "jquery": ">= 1.9.1"
+  }
 }
