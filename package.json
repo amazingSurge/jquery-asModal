@@ -4,9 +4,10 @@
   "description": "A lightweight jQuery plugin that help create a modal dialog",
   "version": "0.2.1",
   "homepage": "https://github.com/amazingSurge/jquery-modal",
-  "author": {
+   "author": {
     "name": "amazingSurge",
-    "email": "Kaptinlin@gmail.com"
+    "email": "amazingSurge@yahoo.com",
+    "url": "amazingSurge.com"
   },
   "repository": {
     "type": "git",

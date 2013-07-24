@@ -20,6 +20,6 @@
   "homepage": "https://github.com/amazingSurge/jquery-modal",
   "docs": "https://github.com/amazingSurge/jquery-modal",
   "dependencies": {
-    "jquery": ">= 1.9.1"
+    "jquery": ">= 1.8.3"
   }
 }
