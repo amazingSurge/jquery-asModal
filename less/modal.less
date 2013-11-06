@@ -1,16 +1,22 @@
 .modal-container {
 	position: fixed;
-	margin: 0 auto;
+	top: 50%;
+	left: 50%;
+	margin-left: -50%;
+	margin-top: -50%;
 	display: block;
 	visibility: visible;
 	z-index: 10001;
+}
+.modal-content {
+
 }
 .modal-overlay {
 	display: none;
     position: fixed;
     z-index: 10000;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     height:100%;
     width:100%;
     background: #000;
@@ -24,76 +30,4 @@
 	display: block;
 	visibility: visible;
 }
-.modal-animate {
-  -webkit-animation-duration: 1s;
-     -moz-animation-duration: 1s;
-       -o-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-     -moz-animation-fill-mode: both;
-       -o-animation-fill-mode: both;
-          animation-fill-mode: both;
-}
 
-.modal-animate-show {
-	-webkit-animation-name: modalShow;
-	-moz-animation-name: modalShow;
-	-o-animation-name: modalShow;
-	animation-name: modalShow;
-}
-
-.modal-animate-hide {
-	-webkit-animation-name: modalHide;
-	-moz-animation-name: modalHide;
-	-o-animation-name: modalHide;
-	animation-name: modalHide;
-}
-
-.modal-spinner {
-	display: none;
-	width: 50px;
-	height: 50px;
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	margin-right: -25px;
-	margin-top: -25px;
-	background: url('../img/spinner.gif') transparent no-repeat center center;
-}
-
-@-webkit-keyframes modalShow {
-	0% {opacity: 0;}	
-}
-
-@-moz-keyframes modalShow {
-	0% {opacity: 0;}	
-}
-
-@-o-keyframes modalShow {
-	0% {opacity: 0;}	
-}
-
-@keyframes modalShow {
-	0% {opacity: 0;}	
-}
-
-@-webkit-keyframes modalHide {
-	100% {opacity: 0;}
-}
-
-@-moz-keyframes modalHide {
-	100% {opacity: 0;}
-}
-
-@-o-keyframes modalHide {
-	100% {opacity: 0;}
-}
-
-@keyframes modalHide {	
-	100% {opacity: 0;}
-}
-
-/* styles */
-.modal-container {
-	background: #fff;
-}

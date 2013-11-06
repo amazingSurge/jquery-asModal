@@ -7,11 +7,13 @@
  */
 
 (function(window, document, $, undefined) {
+
 	var Modal = $.modal = function(element, options) {
 		this.element = element;
 		this.$element = $(element);
 		this.$overlay = $('<div></div>').css({display: 'none'});
 		this.$container = $('<div></div>').css({display: 'none'});
+		this.$contentWrap = $('<div></div>').appendTo(this.$container);
 
 		// options
         var meta_data = [];
@@ -25,7 +27,9 @@
         this.namespace = this.options.namespace;
 
         this.classes = {
-			overlay: this.namespace + '_overlay',
+			overlay: this.namespace + '-overlay',
+			container: this.namespace + '-container',
+			content: this.namespace + '-content',
 			skin: this.namespace + '_' + this.options.skin,
 			error: this.namespace + '_' + 'error',
 			open: this.namespace + '_' + 'open'
@@ -37,12 +41,14 @@
             this.$container.addClass(this.classes.skin);
             this.$overlay.addClass(this.classes.skin);
         }
-        this.$container.addClass(this.namespace);
+        this.$container.addClass(this.classes.container);
         this.$overlay.addClass(this.classes.overlay);
+        this.$contentWrap.addClass(this.classes.content);
 
         this.isLoading = false;
         this.enabled = true;
         this.isError = false;
+
         this.init();
 	};
 
@@ -50,18 +56,27 @@
 		constructor: Modal,
 		init: function() {
 			var self = this,
-				ainmate = this._animationSupport();
+				animate = this._animationSupport();
 
 			// check element href
 			if (this.options.content === null) {
 				this.options.content = this.$element.attr('href');
 			}
 
-			this.css3Support = animate.css3Support;
-			this.animationEnd = animationEnd;
+			// mock
+			this.css3Support = animate.css3Support || true;
+			this.animationEnd = animate.animationEnd || 'animationend';
 
 			this.$container.appendTo('body');
 			this.$overlay.appendTo('body');
+
+			// set fixed width/height
+			if (this.options.width) {
+				this.$contentWrap.width(this.options.width);
+			}
+			if (this.options.height) {
+				this.$contentWrap.height(this.options.height);
+			}
 
 			this.$container.on(this.animationEnd, function() {
 				if (typeof self.options.onComplete === 'function') {
@@ -71,16 +86,17 @@
 				return false;
 			});
 
+			this.$element.on('click.dropdown', function() {
+				if (self.enabled) {
+					self.open();
+				}
+				return false;
+			});
+
 		},
-		_position: function() {},
 		_load: function() {
 			var self = this,
 				dtd = $.Deferred();
-
-			if (this.$content && !this.isError) {
-				dtd.resolve(this.$content);
-				return dtd.promise();
-			}
 
 			if (this.options.content.charAt(0) === '#' || this.options.content.charAt(0) === '.' ) {
 				// element content
@@ -93,7 +109,7 @@
 					url: this.options.content
 				}).then(function(html) {
 					dtd.resolve($(html));
-				}, function(error) {
+				}, function() {
 					dtd.reject(self.options.error);
 				});
 				// loading for waiting ajax
@@ -102,7 +118,7 @@
 			return dtd.promise();
 		},
 		_animationSupport: function() {
-
+			return {};
 		},
 		_unbindeEvent: function() {
 			if (this.options.closeElement) {
@@ -114,8 +130,7 @@
 		_showLoading: function() {},
 		_hideLoading: function() {},
 		_animate: function() {
-			var dtd = $.Deferred(),
-				self = this;
+			var dtd = $.Deferred();
 
 			this.$container.css({display: 'block'}).addClass(this.classes.open);
 
@@ -123,7 +138,10 @@
 			// extend jquery animate in Modal.animations
 			if (!this.css3Support) {
 				Modal.animations[this.options.jqAnimate][this.status](this, dtd);
-			}
+			} else {
+				// hand over control to css3 event
+				dtd.reject();
+			} 
 			return dtd.promise();
 		},
 		open: function() {
@@ -148,14 +166,21 @@
 				});
 			}
 
+			if (this.$content && !this.isError) {
+				// prevent reloading
+				this._afterOpen();
+				return;
+			}
+
 			this._load().then(function($content) {
 				self.$content = $content;
-				self.$content.appendTo(self.$container.empty());
+				self.$content.appendTo(self.$contentWrap.empty());
 				self._afterOpen();
 			}, function(error) {
 				self.$container.addClass(self.classes.error);
+				self.isError = true;
 				self.$content = error;
-				self.$content.appendTo(self.$container.empty());
+				self.$content.appendTo(self.$contentWrap.empty());
 				self._afterOpen();
 			});
 		},
@@ -186,9 +211,19 @@
 				self.$container.removeClass(self.classes.open);
 			});
 		},
-		enable: function() {},
-		disable: function() {},
-		destroy: function() {}
+		enable: function() {
+			this.enabled = true;
+			this.$element.addClass(this.classes.enabled);
+		},
+		disable: function() {
+			this.enabled = false;
+			this.$element.removeClass(this.classes.enabled);
+		},
+		destroy: function() {
+			this.$element.off('click.dropdown');
+			this.$container.remove();
+			this.$overlay.remove();
+		}
 	};
 
 	Modal.animations = {
@@ -219,16 +254,18 @@
 		namespace: 'modal', // String: Prefix string attached to the class of every element generated by the plugin
 		skin: null, // set plugin skin
 
-		content: '#', // Set the URL, ID or Class.
+		content: null, // Set the URL, ID or Class.
         overlay: true, // Show the overlay.
-        closeElement: '#', // Element ID or Class to close the modal
+        closeElement: null, // Element ID or Class to close the modal
         effect: 'fade', // fadein | slide | newspaper | fall 
         jqAnimate: 'fade', // set default jquery animate when css3 animation doesn't support
         focus: true, // set focus to form element in content
 
         closeByEscape: true, // Allow the user to close the modal by pressing 'ESC'.
         closeByOverlayClick: true, // Allow the user to close the modal by clicking the overlay. 
-        autoPosition: true, 
+        
+        width: null, // Set a fixed total width.
+        hieght: null, // Set a fixed total height.
 
         // Callback API
         onOpen: null, // Callback: function() - Fires when the modal open
