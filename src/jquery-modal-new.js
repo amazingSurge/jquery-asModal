@@ -32,7 +32,9 @@
 			content: this.namespace + '-content',
 			skin: this.namespace + '_' + this.options.skin,
 			error: this.namespace + '_' + 'error',
-			open: this.namespace + '_' + 'open'
+			open: this.namespace + '_' + 'open',
+			animate: this.namespace + '_animate',
+			loading: this.namespace + '_loading'
         };
 
         // skin
@@ -64,7 +66,7 @@
 			}
 
 			// mock
-			this.css3Support = animate.css3Support || true;
+			this.css3Support = animate.css3Support || false;
 			this.animationEnd = animate.animationEnd || 'animationend';
 
 			this.$container.appendTo('body');
@@ -78,21 +80,30 @@
 				this.$contentWrap.height(this.options.height);
 			}
 
-			this.$container.on(this.animationEnd, function() {
+			this.$contentWrap.on(this.animationEnd, function() {
 				if (typeof self.options.onComplete === 'function') {
 					self.options.onComplete.call(this,this);
 				}
-				self.$container.trigger('dropdown::onComplete', this);
+				self.$container.trigger('modal::onComplete', this);
 				return false;
 			});
 
-			this.$element.on('click.dropdown', function() {
+			this.$element.on('click.modal', function() {
 				if (self.enabled) {
 					self.open();
 				}
 				return false;
 			});
-
+			
+			if (this.options.closeByOverlayClick) {
+				// here not bind in this.$overlay because its zIndex is less then this.$container
+				this.$container.on('click.modal', function(event) {
+					if ($(event.target).hasClass(self.classes.container)) {
+						self.close();
+						return false;
+					}
+				});
+			}
 		},
 		_load: function() {
 			var self = this,
@@ -102,6 +113,9 @@
 				// element content
 				dtd.resolve($(this.options.content));
 			} else {
+				// loading for waiting ajax
+				this._showLoading();
+
 				// ajax
 				$.ajax({
 					type: 'get',
@@ -110,29 +124,37 @@
 				}).then(function(html) {
 					dtd.resolve($(html));
 				}, function() {
-					dtd.reject(self.options.error);
+					dtd.reject(self.options.errorText);
 				});
-				// loading for waiting ajax
-				this._showLoading();
 			}
 			return dtd.promise();
 		},
 		_animationSupport: function() {
-			return {};
+			var css3Support, animationend;
+			// TODO: css3 detect
+			return {
+				css3Support: css3Support,
+				animationend: animationend
+			};
 		},
 		_unbindeEvent: function() {
 			if (this.options.closeElement) {
-				this.$close.off('click.dropdown');
+				this.$close.off('click.modal');
 			}			
-			$(document).off('keydown.dropdown');
-			this.$overlay.off('click.dropdown');
+			$(document).off('keydown.modal');
 		},
-		_showLoading: function() {},
-		_hideLoading: function() {},
+		_showLoading: function() {
+			this.$loading = $('<div>loading...</div>').addClass(this.classes.loading);
+			this.$loading.appendTo(this.$overlay);
+		},
+		_hideLoading: function() {
+			if (this.$loading) {
+				this.$loading.remove();
+				this.$loading = null;
+			}
+		},
 		_animate: function() {
 			var dtd = $.Deferred();
-
-			this.$container.css({display: 'block'}).addClass(this.classes.open);
 
 			// keep consistant with css3 animateEnd event
 			// extend jquery animate in Modal.animations
@@ -149,20 +171,16 @@
 
 			if (this.isLoading) {
 				this._hideLoading();
-			}
-			
+			}			
 			if (this.options.overlay) {
-				this.$overlay.css({display: 'block'}).appendTo('body');
+				this.$overlay.css({display: 'block'});
 			}
 			if (this.options.closeByEscape) {
-				$(document).on('keydown.dropdown', function(event) {
-					return false;
-				});
-			}
-			if (this.options.closeByOverlayClick) {
-				$(document).on('click.dropdown', function() {
-					self.close();
-					return false;
+				$(document).on('keydown.modal', function(event) {
+					// any bugs for different browsers, find a better way
+					if (event.keyCode === 27) {
+						self.close();
+					}
 				});
 			}
 
@@ -172,43 +190,57 @@
 				return;
 			}
 
-			this._load().then(function($content) {
+			// clear last open info before load
+			this.$contentWrap.removeClass(this.classes.error);
+
+			this._load().always(function() {
+				self._hideLoading();
+			}).then(function($content) {
 				self.$content = $content;
-				self.$content.appendTo(self.$contentWrap.empty());
+				self.$contentWrap.empty().html(self.$content);
 				self._afterOpen();
 			}, function(error) {
-				self.$container.addClass(self.classes.error);
+				self.$contentWrap.addClass(self.classes.error);
 				self.isError = true;
 				self.$content = error;
-				self.$content.appendTo(self.$contentWrap.empty());
+				self.$contentWrap.empty().html(self.$content);
 				self._afterOpen();
 			});
 		},
-
 		_afterOpen: function() {
 			var self = this;
 
 			// this must do after content loaded
 			if (this.options.closeElement) {
 				this.$close = this.$content.find(this.options.closeElement);
-				this.$close.on('click.dropdown', $.proxy(this.hide, this));
+				this.$close.on('click.modal', $.proxy(this.hide, this));
 			}
+
+			// show container
+			this.$container.css({display: 'block'}).addClass(this.classes.open);
+
+			// active css3 comeIn animation , if browser supports 
+			this.$contentWrap.addClass(this.classes.animate);
 
 			// for animation 
 			this.status = 'moveIn';
 			this._animate().then(function() {
-				self.$container.trigger(self.animationEnd, self);
+				self.$contentWrap.trigger(self.animationEnd, self);
 			});
 		},
 		close: function() {
 			var self = this;
 
-			// for animation 
+			// for jquery animation 
 			this.status = 'moveOut';
+
+			// active css3 comeOut animation 
+			this.$contentWrap.removeClass(this.classes.animate);
+
 			this._animate().then(function() {
 				self._unbindeEvent();
 				self.$overlay.css({display: 'none'});
-				self.$container.removeClass(self.classes.open);
+				self.$container.removeClass(self.classes.open).css({display: 'none'});
 			});
 		},
 		enable: function() {
@@ -220,7 +252,7 @@
 			this.$element.removeClass(this.classes.enabled);
 		},
 		destroy: function() {
-			this.$element.off('click.dropdown');
+			this.$element.off('click.modal');
 			this.$container.remove();
 			this.$overlay.remove();
 		}
@@ -229,9 +261,11 @@
 	Modal.animations = {
 		fade: {
 			moveIn: function(instance, dtd) {
-				instance.$container.animate({
+
+				instance.$contentWrap.animate({
 					opacity: 1
 				},{
+					duration: 400,
 					complete: function() {
 						dtd.resolve();
 					}
@@ -239,9 +273,11 @@
 				
 			},
 			moveOut: function(instance, dtd) {
-				instance.$container.ainmate({
+
+				instance.$contentWrap.animate({
 					opacity: 0
 				}, {
+					duration: 400,
 					complete: function() {
 						dtd.resolve();
 					}
@@ -260,6 +296,7 @@
         effect: 'fade', // fadein | slide | newspaper | fall 
         jqAnimate: 'fade', // set default jquery animate when css3 animation doesn't support
         focus: true, // set focus to form element in content
+        errorText: 'sorry, cant find the file !', // set ajax error text
 
         closeByEscape: true, // Allow the user to close the modal by pressing 'ESC'.
         closeByOverlayClick: true, // Allow the user to close the modal by clicking the overlay. 

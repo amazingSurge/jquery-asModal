@@ -26,11 +26,22 @@
                 border: 1px solid #555;
             }
             .example ul {
+                list-style: none;
                 border: 1px solid #000;
                 padding: 5px;
             }
             .example .register_form {
                 display: none;
+            }
+            .register_form, .custom_form {
+                width: 300px;
+                padding: 10px 15px;
+                border: #a0a0a0 solid 1px;
+                background: #f5f5f5;
+            }
+            .register_form ul {
+                list-style: none;
+                margin: 0;
             }
         </style>
     </head>
@@ -47,13 +58,36 @@
         <section>
             <h4>Default</h4>
             <pre class="has-example"><code class="language-javascript">
-
+&lt;button href=&quot;.register_form&quot; class=&quot;form&quot;&gt;Login&lt;/button&gt;
+&lt;div class=&quot;register_form&quot;&gt;
+    &lt;form action=&quot;#&quot; method=&quot;post&quot;&gt;
+        &lt;header&gt;&lt;h4&gt;Login&lt;/h4&gt;&lt;/header&gt;
+        &lt;ul&gt;
+            &lt;li&gt;
+                &lt;label for=&quot;username&quot;&gt;Username:&lt;/label&gt;
+                &lt;input id=&quot;username&quot; type=&quot;text&quot; name=&quot;username&quot; /&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;label for=&quot;password&quot;&gt;Password:&lt;/label&gt;
+                &lt;input id=&quot;password&quot; type=&quot;text&quot; name=&quot;password&quot; /&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;footer&gt;
+            &lt;button&gt;Submit&lt;/button&gt;
+        &lt;/footer&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+&lt;script&gt;                   
+    $(document).ready(function() {
+        $('.form').modal();          
+    });
+&lt;/script&gt;
 </code></pre>
             <div class="example">
                 <button href=".register_form" class="form">Login</button>
                 <div class="register_form">
                     <form action="#" method="post">
-                        <header>Login</header>
+                        <header><h4>Login</h4></header>
                         <ul>
                             <li>
                                 <label for="username">Username:</label>
@@ -78,47 +112,25 @@
         </section>  
 
         <section>
-            <h4>onChange</h4>
+            <h4>Ajax</h4>
             <pre class="has-example"><code class="language-javascript">
-&lt;div class=&quot;dropdown-wrap&quot;&gt;
-    &lt;div class=&quot;dropdown-onChange&quot;&gt;click me&lt;/div&gt;
-    &lt;ul class=&quot;dropdown-content&quot;&gt;
-        &lt;li&gt;items-1&lt;/li&gt;
-        &lt;li&gt;items-2&lt;/li&gt;
-        &lt;li&gt;items-3&lt;/li&gt;
-        &lt;li&gt;items-4&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
+&lt;button href=&quot;login.html&quot; class=&quot;ajaxLoaded&quot;&gt;Ajax load sucess !&lt;/button&gt;
+&lt;button href=&quot;fail.html&quot; class=&quot;ajaxError&quot;&gt;Ajax load failed !&lt;/button&gt;
 &lt;script&gt;                   
     $(document).ready(function() {
-        $('.dropdown-onChange').dropdown({
-            panel: '.dropdown-content',
-            onChange: function($selected) {
-                console.log('selected ' + $selected.text());
-            }
-        });          
+        $('.ajaxLoaded').modal();
+        $('.ajaxError').modal();          
     });
 &lt;/script&gt;
 </code></pre>
             <p>so you can see the output in the console</p>
             <div class="example">
-                <div class="dropdown-wrap">
-                    <div class="dropdown-onChange">click me</div>
-                    <ul class="dropdown-content">
-                        <li>items-1</li>
-                        <li>items-2</li>
-                        <li>items-3</li>
-                        <li>items-4</li>
-                    </ul>
-                </div>
+                <button href="login.html" class="ajaxLoaded">Ajax load sucess !</button>
+                <button href="fail.html" class="ajaxError">Ajax load failed !</button>
                 <script>                   
                     $(document).ready(function() {
-                        $('.dropdown-onChange').dropdown({
-                            panel: '.dropdown-content',
-                            onChange: function($selected) {
-                                console.log('selected ' + $selected.text());
-                            }
-                        });          
+                        $('.ajaxLoaded').modal();
+                        $('.ajaxError').modal();          
                     });
                 </script>
             </div>
@@ -128,22 +140,7 @@
         <section>
             <h4>panel selector</h4>
             <pre class="has-example"><code class="language-javascript">
-&lt;div class=&quot;dropdown-wrap&quot;&gt;
-    &lt;div class=&quot;dropdown-selector&quot;&gt;click me&lt;/div&gt;
-    &lt;ul class=&quot;dropdown-content&quot;&gt;
-        &lt;li&gt;items-1&lt;/li&gt;
-        &lt;li&gt;items-2&lt;/li&gt;
-        &lt;li&gt;items-3&lt;/li&gt;
-        &lt;li&gt;items-4&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-&lt;script&gt;                   
-    $(document).ready(function() {
-        $('.dropdown-selector').dropdown({
-            panel: '.dropdown-content'
-        });          
-    });
-&lt;/script&gt;
+
 </code></pre>
             <div class="example">
                 <div class="dropdown-wrap">
@@ -167,22 +164,7 @@
         <section>
             <h4>clickoutHide</h4>
             <pre class="has-example"><code class="language-javascript">
-&lt;div class=&quot;dropdown-wrap&quot;&gt;
-    &lt;div class=&quot;dropdown-click&quot;&gt;click me&lt;/div&gt;
-    &lt;ul&gt;
-        &lt;li&gt;items-1&lt;/li&gt;
-        &lt;li&gt;items-2&lt;/li&gt;
-        &lt;li&gt;items-3&lt;/li&gt;
-        &lt;li&gt;items-4&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-&lt;script&gt;                   
-    $(document).ready(function() {
-        $('.dropdown-click').dropdown({
-            clickoutHide: false
-        });          
-    });
-&lt;/script&gt;
+
 </code></pre>
             <div class="example">
                 <div class="dropdown-wrap">

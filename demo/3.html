@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Modal</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/prism.css">
+        <link rel="stylesheet" href="css/main.css">       
+        <link rel="stylesheet" href="css/modal.css">
+
+        <script src="js/vendor/jquery-1.9.1.min.js"></script>
+        <script src="js/vendor/jquery.toc.js"></script>
+        <script src="js/vendor/prism.js"></script>
+        <script src="js/vendor/bootstrap.js"></script>
+        <script src="../src/jquery-modal-new.js"></script>
+        <style type="text/css">
+            .example div {
+                display: inline-block;
+                border: 1px solid #555;
+            }
+            .example ul {
+                border: 1px solid #000;
+                padding: 5px;
+            }
+            .example .register_form {
+                display: block;
+            }
+            .register_form {
+                width: 300px;
+            }
+            .wrap {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 903;
+                width: 100%;
+                height: 100%;
+            }
+            .container {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                padding: 0 8px;
+                text-align: center;
+            }
+            .content {
+                position: relative;
+                z-index: 505;
+                display: inline-block;
+                max-width: 100%;
+                margin: 0 auto;
+                text-align: left;
+            }
+
+
+            .block {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              text-align: center;
+              background: #c0c0c0;
+
+            }
+             
+            .block:before {
+              content: '';
+              display: inline-block;
+              height: 100%; 
+              vertical-align: middle;
+              margin-right: -0.25em; /* Adjusts for spacing */
+                
+              /* For visualization 
+              background: #808080; width: 5px;
+              */
+             }
+             
+            .centered {
+              display: inline-block;
+              vertical-align: middle;
+              width: 300px;
+              padding: 10px 15px;
+              border: #a0a0a0 solid 1px;
+              background: #f5f5f5;
+             }
+        </style>
+    </head>
+<body>
+<!--[if lt IE 7]>
+    <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+
+<div id="toc"></div>
+<div id="wrapper">
+    
+            <div class="example">  
+                
+            </div> 
+
+            <div class="wrap">
+                <div class="container">
+                    <div class="content">
+                        
+                    </div>
+                </div>
+            </div>
+
+
+<div class="block">
+    
+    <div class="centered">
+        <div class="register_form">
+                            <form action="#" method="post">
+                                <header>Login</header>
+                                <ul>
+                                    <li>
+                                        <label for="username">Username:</label>
+                                        <input id="username" type="text" name="username" />
+                                    </li>
+                                    <li>
+                                        <label for="password">Password:</label>
+                                        <input id="password" type="text" name="password" />
+                                    </li>
+                                </ul>
+                                <footer>
+                                    <button>Submit</button>
+                                </footer>
+                            </form>
+                        </div>
+    </div>
+    
+</div>
+                
+
+    
+      
+        
+        
+    
+</div>
+
+<script>
+(function(){
+    $('#toc').toc();
+    })();
+</script>
+</body>
+</html>
+
+
