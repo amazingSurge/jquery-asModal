@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="css/prism.css">
         <link rel="stylesheet" href="css/main.css">       
         <link rel="stylesheet" href="css/modal.css">
+        <link rel="stylesheet" href="css/animate.css">
 
         <script src="js/vendor/jquery-1.9.1.min.js"></script>
         <script src="js/vendor/jquery.toc.js"></script>
@@ -107,42 +108,52 @@
                 
             </div> 
 
-            <div class="wrap">
-                <div class="container">
+            <div class="wrap" style="display:none;">
+                <div class="container" style="display:none;">
                     <div class="content">
                         
                     </div>
                 </div>
             </div>
 
+    <button class="click">click</button>
 
-<div class="block">
-    
-    <div class="centered">
-        <div class="register_form">
-                            <form action="#" method="post">
-                                <header>Login</header>
-                                <ul>
-                                    <li>
-                                        <label for="username">Username:</label>
-                                        <input id="username" type="text" name="username" />
-                                    </li>
-                                    <li>
-                                        <label for="password">Password:</label>
-                                        <input id="password" type="text" name="password" />
-                                    </li>
-                                </ul>
-                                <footer>
-                                    <button>Submit</button>
-                                </footer>
-                            </form>
-                        </div>
+    <div class="block">
+        <div class="centered modal_fadeScale">
+            <div class="register_form modal-content">
+                <form action="#" method="post">
+                    <header>Login</header>
+                    <ul>
+                        <li>
+                            <label for="username">Username:</label>
+                            <input id="username" type="text" name="username" />
+                        </li>
+                        <li>
+                            <label for="password">Password:</label>
+                            <input id="password" type="text" name="password" />
+                        </li>
+                    </ul>
+                    <footer>
+                        <button>Submit</button>
+                    </footer>
+                </form>
+            </div>
+        </div>   
     </div>
-    
-</div>
                 
 
-    
+    <script type="text/javascript">
+        $('.register_form').on('webkitTransitionEnd', function(e) {
+            console.log('trigger',e);
+        });
+        $('.block').css({display: 'none'});
+        $('.click').on('click', function() {
+            $('.block').css({display: 'block'});
+            setTimeout(function() {
+                $('.centered').addClass('modal_open');
+            },0);
+        })
+    </script>
       
         
         

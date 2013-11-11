@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="css/prism.css">
         <link rel="stylesheet" href="css/main.css">       
         <link rel="stylesheet" href="css/modal.css">
+        <link rel="stylesheet" href="css/animate.css">
 
         <script src="js/vendor/jquery-1.9.1.min.js"></script>
         <script src="js/vendor/jquery.toc.js"></script>
@@ -138,53 +139,105 @@
 
 
         <section>
-            <h4>panel selector</h4>
+            <h4>effects</h4>
             <pre class="has-example"><code class="language-javascript">
-
+$(document).ready(function() {
+    $('.fadeScale').modal({effect: 'fadeScale'}); 
+});
 </code></pre>
             <div class="example">
-                <div class="dropdown-wrap">
-                    <div class="dropdown-selector">click me</div>
-                    <ul class="dropdown-content">
-                        <li>items-1</li>
-                        <li>items-2</li>
-                        <li>items-3</li>
-                        <li>items-4</li>
-                    </ul>
-                </div>
+                <button href="login.html" class="fadeScale">fadeScale</button>
+                <button href="login.html" class="slideRight">slideRight</button>
+                <button href="login.html" class="slideBottom">slideBottom</button>
+                <button href="login.html" class="newspaper">newspaper</button>
+                <button href="login.html" class="fall">fall</button>
+                <button href="login.html" class="slideFall">slideFall</button>
+                <button href="login.html" class="slideTop">slideTop</button>
+                <button href="login.html" class="flipHorizontal">flipHorizontal</button>
+                <button href="login.html" class="flipVertical">flipVertical</button>
+                <button href="login.html" class="sign">sign</button>
+                <button href="login.html" class="superScaled">superScaled</button>
+                <button href="login.html" class="rotateBottom">rotateBottom</button>
+                <button href="login.html" class="rotateLeft">rotateLeft</button>
+                <button href="login.html" class="blur">blur</button>
                 <script>                   
                     $(document).ready(function() {
-                        $('.dropdown-selector').dropdown({
-                            panel: '.dropdown-content'
-                        });          
+                        $('.fadeScale').modal({effect: 'fadeScale'}); 
+                        $('.slideRight').modal({effect: 'slideRight'}); 
+                        $('.slideBottom').modal({effect: 'slideBottom'}); 
+                        $('.newspaper').modal({effect: 'newspaper'}); 
+                        $('.fall').modal({effect: 'fall'}); 
+                        $('.slideFall').modal({effect: 'slideFall'}); 
+                        $('.slideTop').modal({effect: 'slideTop'}); 
+                        $('.flipHorizontal').modal({effect: 'flipHorizontal'}); 
+                        $('.flipVertical').modal({effect: 'flipVertical'}); 
+                        $('.sign').modal({effect: 'sign'}); 
+                        $('.superScaled').modal({effect: 'superScaled'}); 
+                        $('.rotateBottom').modal({effect: 'rotateBottom'}); 
+                        $('.rotateLeft').modal({effect: 'rotateLeft'}); 
+                        $('.blur').modal({effect: 'blur'}); 
                     });
                 </script>
             </div>
         </section> 
+
         <section>
-            <h4>clickoutHide</h4>
+            <h4>keyboard</h4>
             <pre class="has-example"><code class="language-javascript">
+// default:
+// closeByEscape: true;
+// closeByOverlayClick: true;
 
+&lt;button href=&quot;login.html&quot; class=&quot;closeByEscape&quot;&gt;press ESC to close&lt;/button&gt;
+&lt;button href=&quot;login.html&quot; class=&quot;closeByOverlayClick&quot;&gt;click overlay to close&lt;/button&gt;
+&lt;script&gt;                   
+    $(document).ready(function() {
+        $('.closeByEscape').modal({closeByEscape: true}); 
+        $('.closeByOverlayClick').modal({closeByOverlayClick: true}); 
+    });
+&lt;/script&gt;
 </code></pre>
             <div class="example">
-                <div class="dropdown-wrap">
-                    <div class="dropdown-click">click me</div>
-                    <ul>
-                        <li>items-1</li>
-                        <li>items-2</li>
-                        <li>items-3</li>
-                        <li>items-4</li>
-                    </ul>
-                </div>
+                <button href="login.html" class="closeByEscape">press ESC to close</button>
+                <button href="login.html" class="closeByOverlayClick">click overlay to close</button>
                 <script>                   
                     $(document).ready(function() {
-                        $('.dropdown-click').dropdown({
-                            clickoutHide: false
-                        });          
+                        $('.closeByEscape').modal({closeByEscape: true}); 
+                        $('.closeByOverlayClick').modal({closeByOverlayClick: true}); 
                     });
                 </script>
             </div>
         </section> 
+
+        <section>
+            <h4>options</h4>
+            <pre class="has-example"><code class="language-javascript">
+Modal.defaults = {
+    namespace: 'modal', // String: Prefix string attached to the class of every element generated by the plugin
+    skin: null, // set plugin skin
+
+    content: null, // Set the URL, ID or Class.
+    overlay: true, // Show the overlay.
+    closeElement: null, // Element ID or Class to close the modal
+    effect: 'fadeScale', // fadein | slide | newspaper | fall 
+    overlaySpeed: 200, // Sets the speed of the overlay, in milliseconds
+    jqAnimate: 'fade', // set default jquery animate when css3 animation doesn't support
+    focus: true, // set focus to form element in content
+    errorText: 'sorry, cant find the file !', // set ajax error text
+
+    closeByEscape: true, // Allow the user to close the modal by pressing 'ESC'.
+    closeByOverlayClick: true, // Allow the user to close the modal by clicking the overlay. 
+    
+    width: null, // Set a fixed total width.
+    hieght: null, // Set a fixed total height.
+
+    // Callback API
+    onOpen: null, // Callback: function() - Fires when the modal open
+    onClose: null, // Callback: function() - Fires when the modal close
+    onComplete: null // Callback: function() - Fires when the effect end
+};
+</code></pre>
+        </section>   
 
     </section>
     
