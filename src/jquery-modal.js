@@ -66,11 +66,12 @@
 			content: this.namespace + '-content',
 			contentWrap: this.namespace + '-contentWrap',
 			skin: this.namespace + '_' + this.options.skin,
-			error: this.namespace + '_' + 'error',
-			open: this.namespace + '_' + 'open',
+			error: this.namespace + '_error',
+			open: this.namespace + '_open',
 			effect: this.namespace + '_' + this.options.effect,
 			overlayEffect: this.namespace + '_ovrelay_' + this.options.effect,
-			loading: this.namespace + '_loading'
+			loading: this.namespace + '_loading',
+			disabled: this.namespace + '_disabled'
         };
 
         // skin
@@ -85,7 +86,7 @@
         this.$content.addClass(this.classes.content);
 
         this.isLoading = false;
-        this.enabled = true;
+        this.disabled = false;
         this.isError = false;
         this.isOpen = false;
 
@@ -116,9 +117,12 @@
 			if (this.options.height) {
 				this.$content.height(this.options.height);
 			}
+			if (this.options.closeElement) {
+				this.$contentWrap.on('click.modal',this.options.closeElement, $.proxy(this.hide, this));
+			}
 
-			this.$element.on('click.modal', function() {
-				if (self.enabled) {
+			this.$element.on('click.modal', function(e) {
+				if (!self.disabled) {
 					self.open();
 				}
 				return false;
@@ -158,10 +162,7 @@
 			}
 			return dtd.promise();
 		},
-		_unbindeEvent: function() {
-			if (this.options.closeElement) {
-				this.$close.off('click.modal');
-			}			
+		_unbindeEvent: function() {			
 			$(document).off('keydown.modal');
 		},
 		_showLoading: function() {
@@ -236,11 +237,7 @@
 		_afterOpen: function() {
 			var self = this;
 
-			// this must do after content loaded
-			if (this.options.closeElement) {
-				this.$close = this.content.find(this.options.closeElement);
-				this.$close.on('click.modal', $.proxy(this.hide, this));
-			}
+			
 			if (this.options.focus) {
 				// make sure to excute after content show
 				setTimeout(function() {
@@ -282,7 +279,7 @@
 				if (typeof self.options.onComplete === 'function') {
 					self.options.onComplete.call(this,this);
 				}
-				self.$container.trigger('modal::onComplete', this);
+				self.$container.trigger('modal::complete', this);
 				return false;
 			});
 
@@ -308,12 +305,12 @@
 			this.isOpen = false;
 		},
 		enable: function() {
-			this.enabled = true;
-			this.$element.addClass(this.classes.enabled);
+			this.disabled = false;
+			this.$element.addClass(this.classes.disabled);
 		},
 		disable: function() {
-			this.enabled = false;
-			this.$element.removeClass(this.classes.enabled);
+			this.disabled = true;
+			this.$element.removeClass(this.classes.disabled);
 		},
 		destroy: function() {
 			this.$element.off('click.modal');
@@ -361,7 +358,7 @@
         overlaySpeed: 200, // Sets the speed of the overlay, in milliseconds
         effectFallback: 'fade', // set default jquery animate when css3 animation doesn't support
         focus: true, // set focus to form element in content
-        errorContent: 'sorry, cant find the file !', // set ajax error content
+        errorContent: 'sorry, ajax error.', // set ajax error content
         loadingContent: 'loading...', // set loading content
 
         closeByEscape: true, // Allow the user to close the modal by pressing 'ESC'.

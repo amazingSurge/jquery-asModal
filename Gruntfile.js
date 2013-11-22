@@ -121,6 +121,8 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('js', ['jsbeautifier']);
 
+	grunt.registerTask('dist', ['concat','uglify']);
+
 	grunt.registerTask('version', [
 		'replace:bower',
 		'replace:jquery'
