@@ -36,8 +36,7 @@
 	var Modal = $.modal = function(element, options) {
 		this.element = element;
 		this.$element = $(element);
-		this.$overlay = $('<div></div>').css({display: 'none'});
-		this.$container = $('<div></div>').css({display: 'none'});
+		this.$container = $('<div></div>');
 		this.$contentWrap = $('<div></div>').appendTo(this.$container);
 		this.$content = $('<div></div>').appendTo(this.$contentWrap);
 
@@ -68,6 +67,7 @@
 			skin: this.namespace + '_' + this.options.skin,
 			error: this.namespace + '_error',
 			open: this.namespace + '_open',
+			animateActive: this.namespace + '_animateActive',
 			effect: this.namespace + '_' + this.options.effect,
 			overlayEffect: this.namespace + '_ovrelay_' + this.options.effect,
 			loading: this.namespace + '_loading',
@@ -75,15 +75,21 @@
         };
 
         // skin
-        if (this.options.skin !== null) {
+        if (this.options.skin) {
             this.$element.addClass(this.classes.skin);
             this.$container.addClass(this.classes.skin);
-            this.$overlay.addClass(this.classes.skin);
         }
-        this.$container.addClass(this.classes.container);
-        this.$overlay.addClass(this.classes.overlay);
+        this.$container.addClass(this.classes.container);   
         this.$contentWrap.addClass(this.classes.contentWrap);
         this.$content.addClass(this.classes.content);
+
+        if (this.options.overlay) {
+			this.$overlay = $('<div></div>');
+			this.$overlay.addClass(this.classes.overlay);
+			if (this.options.skin) {
+				this.$overlay.addClass(this.classes.skin);
+			}
+        }
 
         this.isLoading = false;
         this.disabled = false;
@@ -195,7 +201,11 @@
 				this._hideLoading();
 			}			
 			if (this.options.overlay) {
-				this.$overlay.css({display: 'block',opacity: 0});
+				this.$overlay.addClass(this.classes.open);
+				// overlay use jquery animation
+				this.$overlay.animate({opacity:1},{
+					duration: this.options.overlaySpeed
+				});
 			}
 			if (this.options.closeByEscape) {
 				$(document).on('keydown.modal', function(event) {
@@ -205,11 +215,6 @@
 					}
 				});
 			}
-
-			// overlay use jquery animation
-			this.$overlay.animate({opacity:1},{
-				duration: this.options.overlaySpeed
-			});
 
 			if (this.content && !this.isError) {
 				// prevent reloading
@@ -245,17 +250,17 @@
 					if ($input.length > 0) {
 						$input.get(0).focus();
 					}
-				}, 60);
+				}, 10);
 			}
 
-			// show container
-			this.$container.css({display: 'block'});
+			// show container 
+			this.$container.addClass(this.classes.open);
+
 			
 			// active css3 comeIn animation , if browser doesn't support, just ignore it 
 			// give some space for css3 animation
 			setTimeout(function(){
-				self.$contentWrap.addClass(self.classes.open);
-				self.$overlay.addClass(self.classes.open);
+				self.$contentWrap.addClass(self.classes.animateActive);
 			}, 0);
 
 			// for animation 
@@ -287,13 +292,12 @@
 			this.$overlay.animate({opacity: 0},{
 				duration: this.options.overlaySpeed,
 				complete: function() {
-					self.$overlay.css({display:'none'});
+					self.$overlay.removeClass(self.classes.open);
 				}
 			});
 
 			// active css3 comeOut animation 
-			this.$contentWrap.removeClass(this.classes.open);
-			//this.$overlay.removeClass(this.classes.open);
+			this.$contentWrap.removeClass(this.classes.animateActive);
 
 			this._animate().then(function() {
 				self._afterClose();
@@ -301,7 +305,7 @@
 		},
 		_afterClose: function() {
 			this._unbindeEvent();
-			this.$container.removeClass(this.classes.open).css({display: 'none'});
+			this.$container.removeClass(this.classes.open);
 			this.isOpen = false;
 		},
 		enable: function() {

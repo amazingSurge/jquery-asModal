@@ -1,8 +1,12 @@
 .modal-container {
   position: fixed;
+  top: 50%;
+  left: 50%;
   z-index: 10001;
   display: block;
-  margin: 0 auto;
+  display: none;
+  margin-top: -50%;
+  margin-left: -50%;
   visibility: visible;
 }
 

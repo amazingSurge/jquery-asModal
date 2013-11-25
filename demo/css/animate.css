@@ -4,7 +4,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 
 */
 
-.modal_open {
+.modal_animateActive {
 	visibility: visible;
 }
 
@@ -22,7 +22,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	transition: all 0.3s;
 }*/
 
-/*.modal_open ~ .modal-overlay {
+/*.modal_animateActive ~ .modal-overlay {
 	opacity: 1;
 	visibility: visible;
 }*/
@@ -39,7 +39,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	transition: all 0.3s;
 }
 
-.modal_open.modal_fadeScale .modal-content {
+.modal_animateActive.modal_fadeScale .modal-content {
 	-webkit-transform: scale(1);
 	-moz-transform: scale(1);
 	-ms-transform: scale(1);
@@ -59,7 +59,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
 }
 
-.modal_open.modal_slideRight .modal-content {
+.modal_animateActive.modal_slideRight .modal-content {
 	-webkit-transform: translateX(0);
 	-moz-transform: translateX(0);
 	-ms-transform: translateX(0);
@@ -79,7 +79,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	transition: all 0.3s;
 }
 
-.modal_open.modal_slideBottom .modal-content {
+.modal_animateActive.modal_slideBottom .modal-content {
 	-webkit-transform: translateY(0);
 	-moz-transform: translateY(0);
 	-ms-transform: translateY(0);
@@ -96,14 +96,14 @@ http://tympanus.net/Development/ModalWindowEffects/
 	opacity: 0;
 }
 
-.modal_open.modal_newspaper ~ .modal-overlay,
+.modal_animateActive.modal_newspaper ~ .modal-overlay,
 .modal_newspaper .modal-content {
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	transition: all 0.5s;
 }
 
-.modal_open.modal_newspaper .modal-content {
+.modal_animateActive.modal_newspaper .modal-content {
 	-webkit-transform: scale(1) rotate(0deg);
 	-moz-transform: scale(1) rotate(0deg);
 	-ms-transform: scale(1) rotate(0deg);
@@ -133,7 +133,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	opacity: 0;
 }
 
-.modal_open.modal_fall .modal-content {
+.modal_animateActive.modal_fall .modal-content {
 	-webkit-transform: translateZ(0px) rotateX(0deg);
 	-moz-transform: translateZ(0px) rotateX(0deg);
 	-ms-transform: translateZ(0px) rotateX(0deg);
@@ -163,7 +163,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	transition: all 0.3s ease-in;
 }
 
-.modal_open.modal_slideFall .modal-content {
+.modal_animateActive.modal_slideFall .modal-content {
 	
 	-webkit-transform: translate(0%) translateZ(0) rotate(0deg);
 	-moz-transform: translate(0%) translateZ(0) rotate(0deg);
@@ -193,7 +193,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	opacity: 0;
 }
 
-.modal_open.modal_slideTop .modal-content {
+.modal_animateActive.modal_slideTop .modal-content {
 	-webkit-transform: translateY(0%);
 	-moz-transform: translateY(0%);
 	-ms-transform: translateY(0%);
@@ -223,7 +223,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	opacity: 0;
 }
 
-.modal_open.modal_flipHorizontal .modal-content {
+.modal_animateActive.modal_flipHorizontal .modal-content {
 	-webkit-transform: rotateY(0deg);
 	-moz-transform: rotateY(0deg);
 	-ms-transform: rotateY(0deg);
@@ -252,7 +252,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	opacity: 0;
 }
 
-.modal_open.modal_flipVertical .modal-content {
+.modal_animateActive.modal_flipVertical .modal-content {
 	-webkit-transform: rotateX(0deg);
 	-moz-transform: rotateX(0deg);
 	-ms-transform: rotateX(0deg);
@@ -284,7 +284,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	transition: all 0.3s;
 }
 
-.modal_open.modal_sign .modal-content {
+.modal_animateActive.modal_sign .modal-content {
 	-webkit-transform: rotateX(0deg);
 	-moz-transform: rotateX(0deg);
 	-ms-transform: rotateX(0deg);
@@ -304,7 +304,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	transition: all 0.3s;
 }
 
-.modal_open.modal_superScaled .modal-content {
+.modal_animateActive.modal_superScaled .modal-content {
 	-webkit-transform: scale(1);
 	-moz-transform: scale(1);
 	-ms-transform: scale(1);
@@ -337,7 +337,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	transition: all 0.3s ease-out;
 }
 
-.modal_open.modal_rotateBottom .modal-content {
+.modal_animateActive.modal_rotateBottom .modal-content {
 	-webkit-transform: translateY(0%) rotateX(0deg);
 	-moz-transform: translateY(0%) rotateX(0deg);
 	-ms-transform: translateY(0%) rotateX(0deg);
@@ -369,7 +369,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	transition: all 0.3s;
 }
 
-.modal_open.modal_rotateLeft .modal-content {
+.modal_animateActive.modal_rotateLeft .modal-content {
 	-webkit-transform: translateZ(0px) translateX(0%) rotateY(0deg);
 	-moz-transform: translateZ(0px) translateX(0%) rotateY(0deg);
 	-ms-transform: translateZ(0px) translateX(0%) rotateY(0deg);
@@ -378,11 +378,11 @@ http://tympanus.net/Development/ModalWindowEffects/
 }
 
 /* blur:  Blur */
-.modal_open.modal_blur ~ .modal-overlay {
+.modal_animateActive.modal_blur ~ .modal-overlay {
 	background: rgba(180,46,32,0.5);
 }
 
-.modal_open.modal_blur ~ .container {
+.modal_animateActive.modal_blur ~ .container {
 	-webkit-filter: blur(3px);
 	-moz-filter: blur(3px);
 	filter: blur(3px);
@@ -396,14 +396,14 @@ http://tympanus.net/Development/ModalWindowEffects/
 	opacity: 0;
 }
 
-.modal_open.modal_blur ~ .container,
+.modal_animateActive.modal_blur ~ .container,
 .modal_blur .modal-content {
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
 	transition: all 0.3s;
 }
 
-.modal_open.modal_blur .modal-content {
+.modal_animateActive.modal_blur .modal-content {
 	-webkit-transform: translateY(0);
 	-moz-transform: translateY(0);
 	-ms-transform: translateY(0);
@@ -433,7 +433,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	transition: all 0.3s;
 }
 
-.modal_open.modal-12 ~ .modal-overlay {
+.modal_animateActive.modal-12 ~ .modal-overlay {
 	background: #e74c3c;
 } 
 
@@ -442,7 +442,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	background: transparent;
 }
 
-.modal_open.modal-12 .modal-content {
+.modal_animateActive.modal-12 .modal-content {
 	-webkit-transform: scale(1);
 	-moz-transform: scale(1);
 	-ms-transform: scale(1);
@@ -469,7 +469,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	opacity: 0;
 }
 
-.modal_open.modal-13 .modal-content {
+.modal_animateActive.modal-13 .modal-content {
 	-webkit-animation: slit .7s forwards ease-out;
 	-moz-animation: slit .7s forwards ease-out;
 	animation: slit .7s forwards ease-out;
@@ -491,20 +491,20 @@ http://tympanus.net/Development/ModalWindowEffects/
 }
 
 /* Effect 18:  Slide from right with perspective on container */
-.modal_open.modal-18 ~ .container {
+.modal_animateActive.modal-18 ~ .container {
 	height: 100%;
 	overflow: hidden;
 }
 
-.modal_open.modal-18 ~ .modal-overlay {
+.modal_animateActive.modal-18 ~ .modal-overlay {
 	background: rgba(143,27,15,0.8);
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	transition: all 0.5s;
 }
 
-.modal_open.modal-18 ~ .container,
-.modal_open.modal-18 ~ .modal-overlay {
+.modal_animateActive.modal-18 ~ .container,
+.modal_animateActive.modal-18 ~ .modal-overlay {
 	-webkit-transform-style: preserve-3d;
 	-webkit-transform-origin: 0% 50%;
 	-webkit-animation: rotateRightSideFirst 0.5s forwards ease-in;
@@ -539,7 +539,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	opacity: 0;
 }
 
-.modal_open.modal-18 .modal-content {
+.modal_animateActive.modal-18 .modal-content {
 	-webkit-transform: translateX(0);
 	-moz-transform: translateX(0);
 	-ms-transform: translateX(0);
@@ -552,19 +552,19 @@ http://tympanus.net/Development/ModalWindowEffects/
 
 
 /* Effect 19:  Slip in from the top with perspective on container */
-.modal_open.modal-19 ~ .container {
+.modal_animateActive.modal-19 ~ .container {
 	height: 100%;
 	overflow: hidden;
 }
 
-.modal_open.modal-19 ~ .modal-overlay {
+.modal_animateActive.modal-19 ~ .modal-overlay {
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	transition: all 0.5s;
 }
 
-.modal_open.modal-19 ~ .container,
-.modal_open.modal-19 ~ .modal-overlay {
+.modal_animateActive.modal-19 ~ .container,
+.modal_animateActive.modal-19 ~ .modal-overlay {
 	-webkit-transform-style: preserve-3d;
 	-webkit-transform-origin: 50% 100%;
 	-webkit-animation: OpenTop 0.5s forwards ease-in;
@@ -605,7 +605,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	opacity: 0;
 }
 
-.modal_open.modal-19 .modal-content {
+.modal_animateActive.modal-19 .modal-content {
 	-webkit-transform: translateY(0);
 	-moz-transform: translateY(0);
 	-ms-transform: translateY(0);
@@ -618,7 +618,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 
 
 /* perspectiveSlide:  Slide in from bottom with perspective on container */
-.modal_open.modal_perspectiveSlide ~ .container {
+.modal_animateActive.modal_perspectiveSlide ~ .container {
 	height: 100%;
 	overflow: hidden;
 	-webkit-transition: -webkit-transform 0.3s;
@@ -626,8 +626,8 @@ http://tympanus.net/Development/ModalWindowEffects/
 	transition: transform 0.3s;
 }	
 
-.modal_open.modal_perspectiveSlide ~ .container,
-.modal_open.modal_perspectiveSlide ~ .modal-overlay  {
+.modal_animateActive.modal_perspectiveSlide ~ .container,
+.modal_animateActive.modal_perspectiveSlide ~ .modal-overlay  {
 	-webkit-transform: rotateX(-2deg);
 	-moz-transform: rotateX(-2deg);
 	-ms-transform: rotateX(-2deg);
@@ -652,7 +652,7 @@ http://tympanus.net/Development/ModalWindowEffects/
 	transition: all 0.3s 0.2s;
 }
 
-.modal_open.modal_perspectiveSlide .modal-content {
+.modal_animateActive.modal_perspectiveSlide .modal-content {
 	-webkit-transform: translateY(0);
 	-moz-transform: translateY(0);
 	-ms-transform: translateY(0);

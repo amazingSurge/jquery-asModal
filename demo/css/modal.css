@@ -29,6 +29,7 @@
 	margin: 0 auto;
 	text-align: left;
 	vertical-align: middle;
+
 }
 
 .modal-overlay {
@@ -40,44 +41,20 @@
   width: 100%;
   height: 100%;
   background: rgba(143,27,15,0.8);
-  opacity: 0.5;
+  opacity: 0;
+
+  display: none;
 }
 
 .modal_error {
 	border: 1px solid red;
 }
 
-.modal-hide {
+.modal-container {
   display: none;
-  visibility: hidden;
 }
 
-.modal-show {
-  display: block;
-  visibility: visible;
+.modal_open {
+  display: block!important;
 }
 
-.modal-animate {
-  -webkit-animation-duration: 1s;
-     -moz-animation-duration: 1s;
-       -o-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-     -moz-animation-fill-mode: both;
-       -o-animation-fill-mode: both;
-          animation-fill-mode: both;
-}
-
-.modal-animate-show {
-  -webkit-animation-name: modalShow;
-     -moz-animation-name: modalShow;
-       -o-animation-name: modalShow;
-          animation-name: modalShow;
-}
-
-.modal-animate-hide {
-  -webkit-animation-name: modalHide;
-     -moz-animation-name: modalHide;
-       -o-animation-name: modalHide;
-          animation-name: modalHide;
-}
