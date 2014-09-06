@@ -1,6 +1,6 @@
 {
-  "name": "modal",
-  "title": "jQuery Modal",
+  "name": "asModal",
+  "title": "jQuery asModal",
   "description": "A lightweight jQuery plugin that help create a modal dialog",
   "keywords": [],
   "version": "0.2.1",
@@ -9,16 +9,16 @@
     "email": "amazingSurge@yahoo.com",
     "url": "amazingSurge.com"
   },
-  "bugs": "https://github.com/amazingSurge/jquery-modal/issues",
+  "bugs": "https://github.com/amazingSurge/jquery-asModal/issues",
   "licenses": [
     {
       "type": "GPL",
-      "url": "https://github.com/amazingSurge/jquery-modal/blob/master/LICENSE-GPL"
+      "url": "https://github.com/amazingSurge/jquery-asModal/blob/master/LICENSE-GPL"
     }
   ],
-  "bugs": "https://github.com/amazingSurge/jquery-modal/issues",
-  "homepage": "https://github.com/amazingSurge/jquery-modal",
-  "docs": "https://github.com/amazingSurge/jquery-modal",
+  "bugs": "https://github.com/amazingSurge/jquery-asModal/issues",
+  "homepage": "https://github.com/amazingSurge/jquery-asModal",
+  "docs": "https://github.com/amazingSurge/jquery-asModal",
   "dependencies": {
     "jquery": ">= 1.8.3"
   }

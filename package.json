@@ -1,9 +1,9 @@
 {
-  "name": "jquery-modal",
-  "title": "jQuery Modal",
+  "name": "jquery-asModal",
+  "title": "jQuery asModal",
   "description": "A lightweight jQuery plugin that help create a modal dialog",
   "version": "0.2.1",
-  "homepage": "https://github.com/amazingSurge/jquery-modal",
+  "homepage": "https://github.com/amazingSurge/jquery-asModal",
    "author": {
     "name": "amazingSurge",
     "email": "amazingSurge@yahoo.com",
@@ -11,30 +11,32 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:amazingSurge/jquery-modal.git"
+    "url": "git@github.com:amazingSurge/jquery-asModal.git"
   },
   "bugs": {
-    "url": "https://github.com/amazingSurge/jquery-modal/issues"
+    "url": "https://github.com/amazingSurge/jquery-asModal/issues"
   },
   "licenses": [
     {
       "type": "GPL",
-      "url": "https://github.com/amazingSurge/jquery-modal/blob/master/LICENSE-GPL"
+      "url": "https://github.com/amazingSurge/jquery-asModal/blob/master/LICENSE-GPL"
     }
   ],
   "dependencies": {
     "jquery": ">=1.8.3"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.2.0",
-    "grunt-contrib-concat": "~0.1.2",
-    "grunt-contrib-uglify": "~0.1.2",
-    "grunt-contrib-watch": "~0.3.1",
-    "grunt-contrib-clean": "~0.4.0",
-    "grunt-jsbeautifier": "~0.1.8",
-    "grunt-text-replace": "~0.3.6",
-    "grunt-recess": "~0.3.3",
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.5",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-less": "*",
+    "grunt-autoprefixer": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-jsbeautifier": "*",
+    "grunt-text-replace": "*",
+    "load-grunt-tasks": "*"
   },
   "keywords": []
 }

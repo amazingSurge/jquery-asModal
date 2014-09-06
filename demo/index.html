@@ -20,7 +20,7 @@
         <script src="js/vendor/jquery.toc.js"></script>
         <script src="js/vendor/prism.js"></script>
         <script src="js/vendor/bootstrap.js"></script>
-        <script src="../src/jquery-modal.js"></script>
+        <script src="../src/jquery-asModal.js"></script>
         <style type="text/css">
             .example div {
                 display: inline-block;
@@ -80,7 +80,7 @@
 &lt;/div&gt;
 &lt;script&gt;                   
     $(document).ready(function() {
-        $('.form').modal();          
+        $('.form').asModal();          
     });
 &lt;/script&gt;
 </code></pre>
@@ -106,7 +106,7 @@
                 </div>
                 <script>                   
                     $(document).ready(function() {
-                        $('.form').modal();          
+                        $('.form').asModal();          
                     });
                 </script>
             </div>
@@ -119,8 +119,8 @@
 &lt;button href=&quot;fail.html&quot; class=&quot;ajaxError&quot;&gt;Ajax load failed !&lt;/button&gt;
 &lt;script&gt;                   
     $(document).ready(function() {
-        $('.ajaxLoaded').modal();
-        $('.ajaxError').modal();          
+        $('.ajaxLoaded').asModal();
+        $('.ajaxError').asModal();          
     });
 &lt;/script&gt;
 </code></pre>
@@ -130,8 +130,8 @@
                 <button href="fail.html" class="ajaxError">Ajax load failed !</button>
                 <script>                   
                     $(document).ready(function() {
-                        $('.ajaxLoaded').modal();
-                        $('.ajaxError').modal();          
+                        $('.ajaxLoaded').asModal();
+                        $('.ajaxError').asModal();          
                     });
                 </script>
             </div>
@@ -142,7 +142,7 @@
             <h4>effects</h4>
             <pre class="has-example"><code class="language-javascript">
 $(document).ready(function() {
-    $('.fadeScale').modal({effect: 'fadeScale'}); 
+    $('.fadeScale').asModal({effect: 'fadeScale'}); 
 });
 </code></pre>
             <div class="example">
@@ -162,20 +162,20 @@ $(document).ready(function() {
                 <button href="login.html" class="blur">blur</button>
                 <script>                   
                     $(document).ready(function() {
-                        $('.fadeScale').modal({effect: 'fadeScale'}); 
-                        $('.slideRight').modal({effect: 'slideRight'}); 
-                        $('.slideBottom').modal({effect: 'slideBottom'}); 
-                        $('.newspaper').modal({effect: 'newspaper'}); 
-                        $('.fall').modal({effect: 'fall'}); 
-                        $('.slideFall').modal({effect: 'slideFall'}); 
-                        $('.slideTop').modal({effect: 'slideTop'}); 
-                        $('.flipHorizontal').modal({effect: 'flipHorizontal'}); 
-                        $('.flipVertical').modal({effect: 'flipVertical'}); 
-                        $('.sign').modal({effect: 'sign'}); 
-                        $('.superScaled').modal({effect: 'superScaled'}); 
-                        $('.rotateBottom').modal({effect: 'rotateBottom'}); 
-                        $('.rotateLeft').modal({effect: 'rotateLeft'}); 
-                        $('.blur').modal({effect: 'blur'}); 
+                        $('.fadeScale').asModal({effect: 'fadeScale'}); 
+                        $('.slideRight').asModal({effect: 'slideRight'}); 
+                        $('.slideBottom').asModal({effect: 'slideBottom'}); 
+                        $('.newspaper').asModal({effect: 'newspaper'}); 
+                        $('.fall').asModal({effect: 'fall'}); 
+                        $('.slideFall').asModal({effect: 'slideFall'}); 
+                        $('.slideTop').asModal({effect: 'slideTop'}); 
+                        $('.flipHorizontal').asModal({effect: 'flipHorizontal'}); 
+                        $('.flipVertical').asModal({effect: 'flipVertical'}); 
+                        $('.sign').asModal({effect: 'sign'}); 
+                        $('.superScaled').asModal({effect: 'superScaled'}); 
+                        $('.rotateBottom').asModal({effect: 'rotateBottom'}); 
+                        $('.rotateLeft').asModal({effect: 'rotateLeft'}); 
+                        $('.blur').asModal({effect: 'blur'}); 
                     });
                 </script>
             </div>
@@ -192,8 +192,8 @@ $(document).ready(function() {
 &lt;button href=&quot;login.html&quot; class=&quot;closeByOverlayClick&quot;&gt;click overlay to close&lt;/button&gt;
 &lt;script&gt;                   
     $(document).ready(function() {
-        $('.closeByEscape').modal({closeByEscape: true}); 
-        $('.closeByOverlayClick').modal({closeByOverlayClick: true}); 
+        $('.closeByEscape').asModal({closeByEscape: true}); 
+        $('.closeByOverlayClick').asModal({closeByOverlayClick: true}); 
     });
 &lt;/script&gt;
 </code></pre>
@@ -202,8 +202,8 @@ $(document).ready(function() {
                 <button href="login.html" class="closeByOverlayClick">click overlay to close</button>
                 <script>                   
                     $(document).ready(function() {
-                        $('.closeByEscape').modal({closeByEscape: true}); 
-                        $('.closeByOverlayClick').modal({closeByOverlayClick: true}); 
+                        $('.closeByEscape').asModal({closeByEscape: true}); 
+                        $('.closeByOverlayClick').asModal({closeByOverlayClick: true}); 
                     });
                 </script>
             </div>

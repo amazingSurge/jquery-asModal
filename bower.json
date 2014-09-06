@@ -1,7 +1,7 @@
 {
-  "name": "jquery-modal",
+  "name": "jquery-asModal",
   "version": "0.2.1",
-  "main": "dist/jquery-modal.js",
+  "main": "dist/jquery-asModal.js",
   "ignore": [
     "**/.*",
     "node_modules",
