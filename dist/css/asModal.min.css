@@ -1,0 +1,8 @@
+/**
+* jQuery asModal v0.3.0
+* https://github.com/amazingSurge/jquery-asModal
+*
+* Copyright (c) amazingSurge
+* Released under the LGPL-3.0 license
+*/
+.modal-container{position:fixed;top:0;left:0;z-index:10001;display:block;width:100%;height:100%;text-align:center}.modal-container:before{display:inline-block;height:100%;margin-right:-.25em;vertical-align:middle;content:""}.modal-contentWrap{position:relative;z-index:505;display:inline-block;max-width:100%;margin:0 auto;text-align:left;vertical-align:middle}.modal-overlay{position:fixed;top:0;left:0;z-index:10000;display:none;width:100%;height:100%;background:rgba(143,27,15,.8);opacity:0}.modal_error{border:1px solid red}.modal-container{display:none}.modal_open{display:block!important}
