@@ -46,6 +46,11 @@ bower install jquery-asModal --save
 npm install jquery-asModal --save
 ```
 
+#### Install From Yarn
+```sh
+yarn add jquery-asModal
+```
+
 #### Build From Source
 If you want build from source:
 
@@ -127,11 +132,11 @@ You can also save the instances to variable for further use.
 
 ```javascript
 // call directly
-$().asModal('destory');
+$().asModal('destroy');
 
 // or
 var api = $().data('asModal');
-api.destory();
+api.destroy();
 ```
 
 #### moveTo(position)

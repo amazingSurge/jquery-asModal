@@ -1,5 +1,5 @@
 /**
-* jQuery asModal v0.3.0
+* jQuery asModal v0.3.1
 * https://github.com/amazingSurge/jquery-asModal
 *
 * Copyright (c) amazingSurge
@@ -400,7 +400,7 @@ class asModal {
   }
 
   _trigger(eventType, ...params) {
-    let data = [this].concat(...params);
+    let data = [this].concat(params);
 
     // event
     this.$element.trigger(`${NAMESPACE$1}::${eventType}`, data);
@@ -412,7 +412,7 @@ class asModal {
     let onFunction = `on${eventType}`;
 
     if (typeof this.options[onFunction] === 'function') {
-      this.options[onFunction].apply(this, ...params);
+      this.options[onFunction].apply(this, params);
     }
   }
 
@@ -422,7 +422,7 @@ class asModal {
 }
 
 var info = {
-  version:'0.3.0'
+  version:'0.3.1'
 };
 
 const NAMESPACE = 'asModal';
