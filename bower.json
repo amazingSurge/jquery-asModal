@@ -1,6 +1,6 @@
 {
   "name": "jquery-asModal",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "A lightweight jQuery plugin that help create a modal dialog.",
   "main": "dist/jquery-asModal.js",
   "copyright": "amazingSurge",
